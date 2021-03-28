@@ -1,0 +1,56 @@
+scalar Date
+type Token{
+  id:String!
+  name:String!
+  token:String!
+}
+type userInfo{
+  id:String!
+  name:String!
+  eml:String!
+  age:Date!
+}
+
+
+type Result {
+  rslt: String!
+  data: String!
+}
+
+#################################################
+input userLogin {
+   id: String!
+   pw: String!
+}
+
+input userSaveParam {
+   id: String!
+   pw: String!
+   name: String!
+   eml: String!
+   age:Date!
+}
+
+
+#################################################
+type Query {
+    userInfo (id:String! ): [userInfo]
+}
+type Mutation {
+    user (param:userLogin ): Token
+}
+type Mutation  {
+    signUpUser(param:userSaveParam ) : Result
+}
+type Mutation {
+    idCheck (id:String!): Result
+}
+type Mutation {
+    nameCheck (name:String!): Result
+}
+type Mutation {
+    userNameEdit (name:String): Result
+}
+type Mutation {
+    userAvatarEdit (avatar:String): Result
+}

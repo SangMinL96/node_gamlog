@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">  
+  
+  <select id="login">
+    SELECT
+       u.id,
+       u.name
+      FROM
+      helympic.User u
+      WHERE
+     <if test="id != null and id !=''">
+       u.id = #{id}
+    </if>
+      AND
+     <if test="pw != null and pw !=''">
+       u.pw = #{pw}
+    </if>
+  </select>
+  <select id="userInfo">
+    SELECT
+       u.id,
+       u.name,
+       u.eml,
+         DATE_FORMAT(u.age, '%Y-%m-%d') age
+      FROM
+      helympic.User u
+      WHERE
+     <if test="id != null and id !=''">
+       u.id = #{id}
+    </if>
+  </select>
+  <update id="signUser">
+    INSERT INTO helympic.User (
+      id,
+      pw, 
+      name,
+      eml,
+      age,
+      rDate
+    ) VALUES (
+     <if test="id != null and id !=''">
+      #{id},
+      </if>
+       <if test="pw != null and pw !=''">
+      #{pw},
+      </if>
+       <if test="name != null">
+      #{name},
+      </if>
+       <if test="eml != null ">
+      #{eml},
+      </if>
+       <if test="age != null ">
+      #{age},
+      </if>
+      now()
+      )
+  </update>
+
+   <select id="idCheck">
+     SELECT
+       u.id
+      FROM
+      helympic.User u
+      WHERE
+     <if test="id != null and id !=''">
+       u.id = #{id}
+    </if>
+  </select>
+     <select id="nameCheck">
+     SELECT
+       u.name
+      FROM
+      helympic.User u
+      WHERE
+     <if test="name != null and name !=''">
+       u.name= #{name}
+    </if>
+  </select>
+  <update id="userNameEdit">
+    UPDATE 
+    User SET 
+    name=#{name},
+    eDate=now() 
+    WHERE 
+    id=#{userId}
+  </update>
+   <update id="userAvatarEdit">
+    UPDATE 
+    User SET 
+    avatar=#{avatar},
+    eDate=now() 
+    WHERE 
+    id=#{userId}
+  </update>
+</mapper>

@@ -1,0 +1,39 @@
+{
+  "name": "Mounjae_BackEnd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "SangMin96 <hwon3794@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.13",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/runtime": "^7.12.13",
+    "add": "^2.0.6",
+    "apollo-server": "^2.19.1",
+    "copy": "^0.3.2",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "graphql-tools": "^7.0.2",
+    "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
+    "mariadb": "^2.5.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "mybatis-mapper": "^0.6.5",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "yarn": "^1.22.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node build/server.js",
+    "dev": "nodemon --exec babel-node src/server.js",
+    "build": "babel src -d build",
+    "postbuild":"cd src && npx copy ./api/**/*.graphql ../build/api"
+  }
+}
